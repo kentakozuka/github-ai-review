@@ -1,0 +1,41 @@
+name: "github-pr-review"
+description: "review PRs with GPT"
+inputs:
+  PERSONAL_ACCESS_TOKEN:
+    description: "GitHub token"
+    required: true
+  OPENAI_API_KEY:
+    description: "OpenAI API key"
+    required: true
+branding:
+  icon: git-pull-request
+  color: green
+runs:
+  using: "composite"
+  steps:
+    - name: checkout
+      uses: actions/checkout@v3
+      with:
+        repository: kentakozuka/github-pr-review
+
+    - name: Install Poetry
+      shell: bash
+      run: |
+        pipx install poetry
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.11"
+    - name: Install Python library
+      run: |
+        poetry install --no-interaction
+      shell: bash
+
+    - name: Run review
+      shell: bash
+      run: poetry run python src/main.py
+      env:
+        PERSONAL_ACCESS_TOKEN: ${{ inputs.PERSONAL_ACCESS_TOKEN }}
+        OPENAI_API_KEY: ${{ inputs.OPENAI_API_KEY }}
+        GITHUB_ISSUE_NUMBER: ${{ github.event.issue.number }}"

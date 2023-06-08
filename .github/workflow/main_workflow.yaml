@@ -1,0 +1,17 @@
+name: Review PR
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  review_pr:
+    if: startsWith(github.event.comment.body, '/review')
+    runs-on: ubuntu-latest
+    name: Checkout code & Review PR
+    steps:
+      - uses: actions/checkout@v3
+      - uses: kentakozuka/github-pr-review@main
+        with:
+          PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}

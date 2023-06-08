@@ -1,0 +1,16 @@
+[tool.poetry]
+authors = ["Kenta Kozuka <kenta.kozuka@gmail.com>"]
+description = ""
+name = "github-pr-review"
+packages = [{include = "github_pr_review"}]
+readme = "README.md"
+version = "0.1.0"
+
+[tool.poetry.dependencies]
+langchain = "^0.0.194"
+openai = "^0.27.8"
+python = "^3.11"
+
+[build-system]
+build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core"]
