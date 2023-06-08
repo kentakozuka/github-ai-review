@@ -1,4 +1,4 @@
-name: "github-pr-review"
+name: "github-ai-review"
 description: "review PRs with GPT"
 inputs:
   PERSONAL_ACCESS_TOKEN:
