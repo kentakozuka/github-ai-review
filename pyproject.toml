@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "github-pr-review"
+name = "github-ai-review"
 version = "0.1.0"
 description = ""
 authors = ["Kenta Kozuka <kenta.kozuka@gmail.com>"]

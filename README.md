@@ -1,1 +1,1 @@
-# github-pr-review
+# github-ai-review

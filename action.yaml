@@ -16,7 +16,7 @@ runs:
     - name: checkout
       uses: actions/checkout@v3
       with:
-        repository: kentakozuka/github-pr-review
+        repository: kentakozuka/github-ai-review
 
     - name: Install Poetry
       shell: bash
