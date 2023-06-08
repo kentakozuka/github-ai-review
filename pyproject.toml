@@ -1,16 +1,21 @@
 [tool.poetry]
-authors = ["Kenta Kozuka <kenta.kozuka@gmail.com>"]
-description = ""
 name = "github-pr-review"
-packages = [{include = "github_pr_review"}]
-readme = "README.md"
 version = "0.1.0"
+description = ""
+authors = ["Kenta Kozuka <kenta.kozuka@gmail.com>"]
+readme = "README.md"
+packages = [{include = "github_pr_review"}]
 
 [tool.poetry.dependencies]
-langchain = "^0.0.194"
-openai = "^0.27.8"
 python = "^3.11"
+pygithub = "^1.58.2"
+openai = "^0.27.8"
+langchain = "^0.0.194"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.3.0"
 
 [build-system]
-build-backend = "poetry.core.masonry.api"
 requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
