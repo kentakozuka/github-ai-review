@@ -9,10 +9,6 @@ from langchain.schema import (
 )
 
 CHAR_SOFT_LIMIT = 9000
-FILE_SYSTEM_EN = 'You are an experienced software developer. You will act as a reviewer for a GitHub Pull Request titled "{}".'
-FILE_QUESTION_EN = "The following is a GitHub patch. Please summarize the key changes and identify potential problems. Start with the most important findings.\n\n"
-SUMMARY_SYSTEM_EN = "Here is a set of summaries for software source code patches. Each summary starts with a ------ line. Please write an overall summary considering all the individual summary. Please present the potential issues and errors first, following by the most important findings, in your summary.\n\n{}"
-
 FILE_SYSTEM_JP = 'あなたは経験豊富なソフトウェア開発者です。"{}"というタイトルのGitHub Pull Requestのレビュアーをしてもらいます。'
 FILE_QUESTION_JP = "以下はGitHubのパッチです。主要な変更点をまとめ、潜在的な問題点を特定してください。最も重要な発見から始めてください。\n\n"
 SUMMARY_SYSTEM_JP = "ここでは、ソフトウェアのソースコードパッチに関する要約を紹介します。それぞれの要約は、------の行で始まります。個々の要約をすべて考慮した全体的な要約を作成してください。潜在的な問題やエラーを最初に提示し、次に最も重要な発見を要約してください。\n\n{}"
@@ -32,11 +28,12 @@ def main():
         return
 
     openai.api_key = os.getenv("OPENAI_API_KEY")
-    chat = ChatOpenAI(temperature=0.5, model_name=model_name or "gpt-3.5-turbo", request_timeout=600)
+    chat = ChatOpenAI(
+        temperature=0.5, model_name=model_name or "gpt-3.5-turbo", request_timeout=600
+    )
     system = FILE_SYSTEM_JP.format(issue.title)
 
     # Iterate all patches.
-    reviews = []
     reviews_summary = ""
     review_details = ""
     files = issue.as_pull_request().get_files()
