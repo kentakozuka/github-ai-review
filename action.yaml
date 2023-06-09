@@ -40,3 +40,4 @@ runs:
         PERSONAL_ACCESS_TOKEN: ${{ inputs.PERSONAL_ACCESS_TOKEN }}
         OPENAI_API_KEY: ${{ inputs.OPENAI_API_KEY }}
         GITHUB_ISSUE_NUMBER: ${{ github.event.issue.number }}
+        MODEL_NAME: ${{ inputs.MODEL_NAME }}

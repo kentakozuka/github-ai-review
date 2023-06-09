@@ -22,6 +22,7 @@ def main():
     pat = os.getenv("PERSONAL_ACCESS_TOKEN")
     repo_name = os.getenv("GITHUB_REPOSITORY")
     issue_number = os.getenv("GITHUB_ISSUE_NUMBER")
+    model_name = os.getenv("MODEL_NAME")
 
     github_client = Github(pat)
     repo = github_client.get_repo(repo_name)
@@ -31,7 +32,7 @@ def main():
         return
 
     openai.api_key = os.getenv("OPENAI_API_KEY")
-    chat = ChatOpenAI(temperature=0.5, model_name="gpt-3.5-turbo", request_timeout=600)
+    chat = ChatOpenAI(temperature=0.5, model_name=model_name or "gpt-3.5-turbo", request_timeout=600)
     system = FILE_SYSTEM_JP.format(issue.title)
 
     # Iterate all patches.
